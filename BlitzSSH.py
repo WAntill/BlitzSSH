@@ -5,15 +5,15 @@ passwds = []
 outputlist = []
 users = ['']  # list of users to try
 
+count = 0
+ip_index = 0
+passwd_index = 0
+
 for i in range(52, 254):
     ips.append(i)
 
 with open('./passwordfile.txt', 'r') as file1:
     passwds = [line.strip() for line in file1]
-
-count = 0
-ip_index = 0
-passwd_index = 0
 
 while passwd_index < len(passwds):
     for user in users:
