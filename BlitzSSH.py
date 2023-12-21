@@ -6,6 +6,10 @@ def main():
     except:
         print("Failed to set values")
     try:
+        BlitzSSH_Utils.format_SourceIP()
+    except:
+        print("Failed to format SourceIP")
+    try:
         BlitzSSH_Utils.make_IP_List()
     except:
         print("Failed to set IPs")

