@@ -6,7 +6,7 @@ def set_Values():
     global network_Interface
     network_Interface = str(input("Please enter the Network Interface: "))
     global host_IP
-    host_IP = subprocess.call(['ip','a','|','grep',network_Interface,'|','grep','\"inet\"','|','grep','-o','[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\/[0-9][0-9]'])
+    host_IP = subprocess.call(['ip','a','|','grep',network_Interface])
     print(host_IP)
 
 def make_IP_List():
