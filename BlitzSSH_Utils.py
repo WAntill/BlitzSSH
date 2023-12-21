@@ -3,11 +3,11 @@ import subprocess
 def set_Values():
     global target_IP
     target_IP = str(input("Please enter the Target IP: "))
-    network_info = subprocess.call(['ip', 'a'])
-    global host_IP
-    host_IP = str(input("Please enter the first 3 octets of the Source IP (e.g. 0.0.0.): "))
     global network_Interface
-    network_Interface = str(input("Please enter the Netork Interface: "))
+    network_Interface = str(input("Please enter the Network Interface: "))
+    global host_IP
+    host_IP = subprocess.call(['ip','a','|','grep',network_Interface, "|",'grep','\"inet\"', '|','grep','-o','[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\/[0-9][0-9]'])
+    print(host_IP)
 
 def make_IP_List():
     global ips
@@ -43,3 +43,11 @@ def run_Attack():
                 if ip_index >= len(ips):
                     ip_index = 0
                 passwd_index += 1
+
+def run_Attack():
+    ip_index = 0
+    passwd_index = 0
+    while passwd_index < len(passwds):
+        for user in users:
+            for pwd in passwds:
+                print("Trying ", user, ":", pwd)        
