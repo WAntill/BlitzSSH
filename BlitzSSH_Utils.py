@@ -3,6 +3,7 @@ import subprocess
 def set_Values():
     global target_IP
     target_IP = str(input("Please enter the Target IP: "))
+    subprocess.call(['ip', 'a'])
     global network_Interface
     network_Interface = str(input("Please enter the Network Interface: "))
     global host_IP
