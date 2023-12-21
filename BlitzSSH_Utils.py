@@ -2,11 +2,12 @@ import subprocess
 
 def set_Values():
     global target_IP
-    target_IP = str(input("Please enter the Target IP"))
+    target_IP = str(input("Please enter the Target IP: "))
+    network_info = subprocess.call(['ip', 'a'])
     global host_IP
-    host_IP = str(input("Please enter the first 3 octets of the Source IP e.g. 0.0.0."))
+    host_IP = str(input("Please enter the first 3 octets of the Source IP (e.g. 0.0.0.): "))
     global network_Interface
-    network_Interface = str(input("Please enter the Netork Interface"))
+    network_Interface = str(input("Please enter the Netork Interface: "))
 
 def make_IP_List():
     global ips
