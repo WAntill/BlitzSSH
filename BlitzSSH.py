@@ -2,6 +2,10 @@ import BlitzSSH_Utils
 
 def main():
     try:
+        BlitzSSH_Utils.set_Values()
+    except:
+        print("Failed to set values")
+    try:
         BlitzSSH_Utils.make_IP_List()
     except:
         print("Failed to set IPs")
