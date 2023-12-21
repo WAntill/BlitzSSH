@@ -44,10 +44,10 @@ def run_Attack():
                     ip_index = 0
                 passwd_index += 1
 
-def run_Attack():
-    ip_index = 0
-    passwd_index = 0
-    while passwd_index < len(passwds):
-        for user in users:
-            for pwd in passwds:
-                print("Trying ", user, ":", pwd)        
+# def run_Attack():
+#     ip_index = 0
+#     passwd_index = 0
+#     while passwd_index < len(passwds):
+#         for user in users:
+#             for pwd in passwds:
+#                 print("Trying ", user, ":", pwd)        
