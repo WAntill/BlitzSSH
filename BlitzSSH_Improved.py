@@ -1,11 +1,11 @@
 import subprocess
 
 global target_IP
-target_IP = "10.1.1.5"
+target_IP = ""
 global host_IP
-host_IP = "10.1.1."
+host_IP = ""
 global network_Interface
-network_Interface = "enp0s8"
+network_Interface = ""
 
 def make_IP_List():
     global ips
