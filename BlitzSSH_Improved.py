@@ -1,11 +1,5 @@
 import subprocess
 
-outputlist = []
-
-count = 0
-ip_index = 0
-passwd_index = 0
-
 global target_IP
 target_IP = "10.1.1.5"
 global host_IP
